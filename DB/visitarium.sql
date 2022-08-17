@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mer. 10 août 2022 à 07:50
+-- Généré le : mer. 17 août 2022 à 06:41
 -- Version du serveur : 5.7.33
 -- Version de PHP : 8.1.6
 
@@ -20,17 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `visitarium`
 --
-
--- --------------------------------------------------------
-
---
--- Structure de la table `departments`
---
-
-CREATE TABLE `departments` (
-  `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -65,11 +54,11 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(11, '2014_10_12_000000_create_users_table', 1),
-(12, '2014_10_12_100000_create_password_resets_table', 1),
-(13, '2019_08_19_000000_create_failed_jobs_table', 1),
-(14, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(15, '2022_01_29_001739_create_permissions_table', 1);
+(6, '2014_10_12_000000_create_users_table', 1),
+(7, '2014_10_12_100000_create_password_resets_table', 1),
+(8, '2019_08_19_000000_create_failed_jobs_table', 1),
+(9, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(10, '2022_01_29_001739_create_permissions_table', 1);
 
 -- --------------------------------------------------------
 
@@ -136,9 +125,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 1, 'admin', 'admin@admin.admin', '2022-05-16 14:47:22', '$2y$10$LNDbLia8aXnGH1OHGhLRD.W8/fw0G0UkVkEssPCttnlH/1cxwrtCu', 'kExn5szToEQALsM8AEXULGdz5mWKluQNJRYu949SfT2N46qHmU285gvguKPa', '2022-05-16 14:47:22', '2022-05-16 14:47:22'),
-(2, 2, 'chimene', 'chichi@3155.chi', NULL, '$2y$10$yzHWVgy21zRjnrrbMXdm1OLfsJ1DKYdaVKi3h/r.zcqro/150JsMK', NULL, '2022-05-23 22:14:47', '2022-05-23 22:14:47'),
-(3, 2, 'TOTO', 'T@T.FR', NULL, '$2y$10$2Mp2eGHV9TkJNKBbcRHNUe/tgxbtIZKhZv.ql05uyc3RDWcrbKbMq', NULL, '2022-07-15 12:57:00', '2022-07-15 12:57:00');
+(1, 1, 'admin', 'admin@admin.admin', '2022-08-17 04:29:57', '$2y$10$ErE/uwxzAJkXw6q0uuZPmOBYhI8//3Jfu5H3jt836R/B6GZTW5lMS', 'qJoZKhTFOCKSOpNMzEAjjChUcEeMEjXZcxqeGB7azLIueIo1MrI08Tx6UxCK', '2022-08-17 04:29:57', '2022-08-17 04:29:57'),
+(2, 2, 'Alin', 'alin@gmail.com', NULL, '$2y$10$gu0vhn8KFyzy772l1vRhQ.UaCAy21O4i.NpkueUrDE7qTPPU0fNqC', NULL, '2022-08-17 04:40:22', '2022-08-17 04:40:22');
 
 -- --------------------------------------------------------
 
@@ -147,35 +135,29 @@ INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `email_verified_at`, `pas
 --
 
 CREATE TABLE `visitors` (
-  `registration_number` int(11) NOT NULL,
-  `fullname` varchar(50) NOT NULL,
-  `depart` varchar(50) NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `registration_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fullname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `depart` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `hire_date` date NOT NULL,
-  `phone` varchar(50) NOT NULL,
-  `address` varchar(50) NOT NULL,
-  `city` varchar(50) NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `phone` int(11) NOT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `city` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `visitors`
 --
 
-INSERT INTO `visitors` (`registration_number`, `fullname`, `depart`, `hire_date`, `phone`, `address`, `city`, `updated_at`, `created_at`) VALUES
-(333, 'samuel', 'Biologie', '2022-07-15', '90947261', '270 Rue Saint-Jacques', 'Paris', '2022-07-15 12:51:31', '2022-07-15'),
-(1111, 'Chimene ALAKOU', 'Economy', '2022-05-16', '+22890947261', 'France', 'Paris', '2022-05-16 14:49:25', '2022-05-16'),
-(2222, 'Aimee AHIANGBEDE', 'Compta', '2022-05-16', '+22890947261', 'Togo', 'Lome', '2022-05-16 14:50:36', '2022-05-16');
+INSERT INTO `visitors` (`id`, `registration_number`, `fullname`, `depart`, `hire_date`, `phone`, `address`, `city`, `created_at`, `updated_at`) VALUES
+(1, '1111', 'Chichi ALAKOU', 'COMMERCIAL', '2022-08-19', 90909090, 'Togo', 'Lome', '2022-08-17 04:33:45', '2022-08-17 04:35:28'),
+(2, '4321', 'Jaden SMITH', 'INFORMATIQUE', '2022-08-23', 132299976, 'USA', 'Seattle', '2022-08-17 04:36:28', '2022-08-17 04:36:28');
 
 --
 -- Index pour les tables déchargées
 --
-
---
--- Index pour la table `departments`
---
-ALTER TABLE `departments`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `failed_jobs`
@@ -221,17 +203,11 @@ ALTER TABLE `users`
 -- Index pour la table `visitors`
 --
 ALTER TABLE `visitors`
-  ADD PRIMARY KEY (`registration_number`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
-
---
--- AUTO_INCREMENT pour la table `departments`
---
-ALTER TABLE `departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `failed_jobs`
@@ -243,7 +219,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT pour la table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `permissions`
@@ -261,13 +237,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `visitors`
 --
 ALTER TABLE `visitors`
-  MODIFY `registration_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2223;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
